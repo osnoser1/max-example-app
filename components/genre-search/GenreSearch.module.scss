@@ -1,0 +1,5 @@
+.root {
+  @apply h-full grid;
+
+  grid-template-rows: auto 1fr;
+}

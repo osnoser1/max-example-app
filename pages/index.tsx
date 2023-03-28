@@ -1,14 +1,7 @@
-import { Button } from "semantic-ui-react";
-
 import { Layout } from "@components/common";
+import { GenreSearch } from "@components/genre-search";
 
-export default function Home() {
-  return (
-    <>
-      <h1>App Works!</h1>
-      <Button>Cta</Button>
-    </>
-  );
-}
-
+const Home = () => <GenreSearch />;
 Home.Layout = Layout;
+
+export default Home;
