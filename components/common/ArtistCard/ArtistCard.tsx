@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Button, Item, Label } from "semantic-ui-react";
 
 import { Artist } from "@framework/artist";
+import { useMyList } from "@framework/myList";
 
 interface Props {
   artist: Artist;
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const ArtistCard: FC<Props> = ({ artist, showAllInfo }) => {
+  const { existArtist, addArtist, removeArtist } = useMyList();
   const primaryGenre = useMemo(
     () => artist.genres.find(({ is_primary }) => is_primary),
     [artist],
@@ -19,6 +21,14 @@ const ArtistCard: FC<Props> = ({ artist, showAllInfo }) => {
     () => artist.genres.filter(genre => genre !== primaryGenre),
     [artist, primaryGenre],
   );
+
+  const handleOnClick = () => {
+    if (!existArtist(artist.id)) {
+      addArtist({ artist: artist });
+    } else {
+      removeArtist({ id: artist.id });
+    }
+  };
 
   return (
     <Item key={`artist-${artist.id}`}>
@@ -44,8 +54,8 @@ const ArtistCard: FC<Props> = ({ artist, showAllInfo }) => {
           </Item.Description>
         )}
         <Item.Extra>
-          <Button primary floated="right">
-            Add
+          <Button primary floated="right" onClick={handleOnClick}>
+            {existArtist(artist.id) ? "Remove" : "Add"}
           </Button>
           {!showAllInfo && <Label>{primaryGenre?.name || "None"}</Label>}
         </Item.Extra>

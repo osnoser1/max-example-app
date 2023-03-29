@@ -19,12 +19,15 @@ const ArtistDetail: FC = () => {
   return (
     <>
       <Container>
-        <Link href="/">
-          <Button as="span" icon>
-            <Icon name="angle left" />
-            Back to search
-          </Button>
-        </Link>
+        <div className="flex justify-between">
+          <Link href="/">
+            <Button as="span" icon>
+              <Icon name="angle left" />
+              Back to search
+            </Button>
+          </Link>
+          <Link href="/my-list">View My List</Link>
+        </div>
         <h1 className="sr-only">Artist Detail</h1>
         {isLoading && (
           <Dimmer.Dimmable blurring dimmed>

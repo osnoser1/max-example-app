@@ -1,4 +1,5 @@
 import { FC, useCallback, useMemo, useState } from "react";
+import Link from "next/link";
 
 import { debounce } from "lodash-es";
 import {
@@ -42,7 +43,10 @@ const GenreSearch: FC = () => {
   return (
     <div className={s.root}>
       <Container>
-        <h1>Genre Search</h1>
+        <div className="flex justify-between">
+          <h1>Genre Search</h1>
+          <Link href="/my-list">View My List</Link>
+        </div>
         <p>Enter a genre to find artists:</p>
         <div className="my-5">
           <Dropdown
